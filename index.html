@@ -184,6 +184,17 @@
                 text-decoration: none;
                 letter-spacing: 0.04em;
             }
+            .nav-v2 {
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                color: var(--white);
+                background: var(--sage);
+                padding: 0.2rem 0.65rem;
+                border-radius: 99px;
+                margin-left: 0.6rem;
+                text-transform: uppercase;
+            }
             .nav-hrs {
                 font-size: 0.6rem;
                 font-weight: 500;
@@ -1240,7 +1251,7 @@
             /* ── RULES ── */
             .rg {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: 0.9rem;
                 margin-top: 3rem;
             }
@@ -1295,6 +1306,10 @@
                 background: var(--gold-lt);
                 color: var(--gold);
             }
+            .rc:nth-child(4) .rc-tag {
+                background: var(--sage-lt);
+                color: var(--sage);
+            }
             .rc-t {
                 font-family: "Cormorant Garamond", serif;
                 font-size: 1.1rem;
@@ -1309,6 +1324,243 @@
                 color: var(--warm);
                 line-height: 1.78;
                 font-weight: 300;
+            }
+
+            /* ── CHANGELOG ── */
+            .clog-wrap {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 20px;
+                overflow: hidden;
+                margin-top: 3rem;
+            }
+            .clog-header {
+                background: var(--ink);
+                padding: 1.8rem 2.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+            .clog-meta {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            .clog-ver {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: var(--white);
+                letter-spacing: -0.02em;
+            }
+            .clog-date {
+                font-size: 0.68rem;
+                color: rgba(255, 255, 255, 0.45);
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            }
+            .clog-tag {
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--ink);
+                background: var(--gold-lt);
+                padding: 0.25rem 0.8rem;
+                border-radius: 99px;
+            }
+            .clog-why {
+                padding: 2rem 2.4rem 1.5rem;
+                border-bottom: 1px solid var(--border);
+                background: var(--cream);
+            }
+            .clog-why p {
+                font-size: 0.83rem;
+                color: var(--warm);
+                margin-bottom: 0.8rem;
+                font-weight: 300;
+            }
+            .clog-reasons {
+                padding-left: 1.2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            .clog-reasons li {
+                font-size: 0.83rem;
+                color: var(--warm);
+                line-height: 1.75;
+                font-weight: 300;
+            }
+            .clog-reasons li strong {
+                color: var(--ink);
+                font-weight: 500;
+            }
+            .clog-changes {
+                padding: 1.6rem 2.4rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .clog-change {
+                border-radius: 12px;
+                padding: 1.1rem 1.4rem;
+                border: 1.5px solid var(--border);
+            }
+            .clog-change.up {
+                border-color: var(--sage);
+                background: var(--sage-bg);
+            }
+            .clog-change.down {
+                border-color: #d4b8b8;
+                background: #fdf5f5;
+            }
+            .clog-change.neutral {
+                border-color: var(--sky-lt);
+                background: var(--sky-bg);
+            }
+            .clog-c-top {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                margin-bottom: 0.5rem;
+            }
+            .clog-ticker {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--ink);
+                letter-spacing: -0.01em;
+            }
+            .clog-arrow {
+                font-size: 0.85rem;
+                color: var(--muted);
+            }
+            .clog-move {
+                font-size: 0.7rem;
+                font-weight: 600;
+                letter-spacing: 0.06em;
+                padding: 0.15rem 0.6rem;
+                border-radius: 99px;
+            }
+            .clog-move.up {
+                background: var(--sage-lt);
+                color: var(--sage);
+            }
+            .clog-move.down {
+                background: #f5e0e0;
+                color: #c05050;
+            }
+            .clog-c-why {
+                font-size: 0.79rem;
+                color: var(--warm);
+                line-height: 1.75;
+                font-weight: 300;
+            }
+            .clog-tradeoff {
+                margin: 0 2.4rem 1.6rem;
+                background: var(--gold-bg);
+                border: 1.5px solid var(--gold-lt);
+                border-radius: 12px;
+                padding: 1.3rem 1.5rem;
+            }
+            .clog-t-label {
+                font-size: 0.62rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 0.5rem;
+            }
+            .clog-tradeoff p {
+                font-size: 0.82rem;
+                color: var(--warm);
+                line-height: 1.78;
+                font-weight: 300;
+            }
+            .clog-seasons-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0;
+                border-top: 1px solid var(--border);
+            }
+            @media (max-width: 680px) {
+                .clog-seasons-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            .clog-season {
+                padding: 1.2rem 1.5rem;
+                border-right: 1px solid var(--border);
+                text-align: center;
+            }
+            .clog-season:last-child {
+                border-right: none;
+            }
+            .clog-s-label {
+                font-size: 0.68rem;
+                color: var(--muted);
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+            }
+            .clog-s-vals {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem;
+            }
+            .clog-old {
+                font-size: 0.78rem;
+                color: var(--muted);
+                font-weight: 300;
+                text-decoration: line-through;
+            }
+            .clog-arrow-s {
+                font-size: 0.68rem;
+                color: var(--muted);
+            }
+            .clog-new {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--ink);
+            }
+            .clog-new.strong {
+                color: var(--sage);
+            }
+            .clog-new.warn {
+                color: #c05050;
+            }
+            .clog-v1 {
+                margin-top: 1.5rem;
+                border: 1.5px dashed var(--border2);
+                border-radius: 14px;
+                padding: 1.4rem 1.8rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .clog-v1-label {
+                font-size: 0.62rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                background: var(--border);
+                padding: 0.2rem 0.7rem;
+                border-radius: 99px;
+                white-space: nowrap;
+                flex-shrink: 0;
+                margin-top: 0.15rem;
+            }
+            .clog-v1-note {
+                font-size: 0.8rem;
+                color: var(--muted);
+                font-weight: 300;
+                line-height: 1.7;
             }
 
             /* ── FOOTER ── */
@@ -1345,11 +1597,19 @@
         <nav>
             <div class="nav-in">
                 <a href="#" class="nav-logo">◎ My Investing Philosophy</a>
+                <span class="nav-v2">v2.0 · 26 Mar 2026</span>
                 <ul class="nav-links">
                     <li><a href="#why">The Why</a></li>
                     <li><a href="#seasons">Seasons</a></li>
                     <li><a href="#strategy">80/20</a></li>
                     <li><a href="#blueprint">Blueprint</a></li>
+                    <li>
+                        <a
+                            href="#changelog"
+                            style="color: var(--sage); font-weight: 600"
+                            >v2.0</a
+                        >
+                    </li>
                     <li><a href="#simulator">Simulate</a></li>
                     <li><a href="#crisis">Crisis Test</a></li>
                     <li><a href="#rules">Rules</a></li>
@@ -1374,11 +1634,12 @@
                     Ray Dalio spent decades studying how empires, currencies,
                     and markets collapse. Then he published it. So I read it,
                     stress-tested it for India, and built myself a portfolio I
-                    can actually sleep with. This is that portfolio.
+                    can actually sleep with. This is that portfolio — now
+                    updated for 2026.
                 </p>
                 <div class="sstrip">
                     <div class="ssi">
-                        <div class="ssn" id="stat-ret">~11%</div>
+                        <div class="ssn" id="stat-ret">~10%</div>
                         <div class="ssl">Hist. avg return</div>
                     </div>
                     <div class="ssi">
@@ -1444,7 +1705,7 @@
                             Compounding is violent — but only if you stay in
                         </div>
                         <div class="wc-x">
-                            ₹1 lakh at 11% yearly becomes roughly ₹22 lakhs in
+                            ₹1 lakh at 10% yearly becomes roughly ₹17 lakhs in
                             30 years — without adding anything more. The catch:
                             one panic-sell during a crash resets the clock. Most
                             people don't lose to the market. They lose to
@@ -1625,10 +1886,11 @@
                     <div class="bph">
                         <p>
                             The 80% Vault is spread across seven ETFs — each
-                            doing one job. Two for growth, two for crashes, two
-                            for inflation, one for liquidity. Together they form
-                            a closed system that rebalances itself when you do
-                            the annual reset.
+                            doing one job. v2.0 tilts heavily toward hard assets
+                            (gold + silver now 33% of Vault) and dry powder,
+                            while reducing long-duration bond exposure that
+                            underperforms in high-inflation environments. Tap
+                            any segment to see the full rationale.
                         </p>
                     </div>
                     <div class="bpb">
@@ -1652,7 +1914,240 @@
 
             <hr class="div" />
 
-            <!-- ── SIMULATOR ── -->
+            <!-- ── V2 CHANGELOG ── -->
+            <section id="changelog" style="scroll-margin-top: 5rem">
+                <div class="s-eye rv">Version History</div>
+                <h2 class="s-ttl rv">
+                    v2.0 — 26 March 2026.<br /><em
+                        >The world changed. So did this.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    The original portfolio was built on Dalio's All-Weather
+                    framework. v2.0 keeps the same skeleton — but adjusts the
+                    muscles. The Iran–US conflict, oil above $100, and Dalio's
+                    own updated recommendation to hold 15% in gold forced a
+                    serious rethink. This is not a full rebuild. It is a
+                    macro-aware rebalance.
+                </p>
+
+                <div class="clog-wrap rv">
+                    <div class="clog-header">
+                        <div class="clog-meta">
+                            <span class="clog-ver">v2.0</span>
+                            <span class="clog-date">26 March 2026</span>
+                        </div>
+                        <div class="clog-tag">
+                            Macro Rebalance · Inflation Tilt
+                        </div>
+                    </div>
+
+                    <div class="clog-why">
+                        <p>Three things forced this update:</p>
+                        <ol class="clog-reasons">
+                            <li>
+                                <strong
+                                    >Dalio himself updated his own
+                                    thesis.</strong
+                                >
+                                He now recommends 15% in gold or crypto. He
+                                warned that long-duration bonds are no longer a
+                                reliable safe haven when governments are
+                                printing to fund debt. The v1.0 vault had 40% in
+                                bonds. That was following his old playbook, not
+                                his current one.
+                            </li>
+                            <li>
+                                <strong
+                                    >India's G-Sec yields hit a 16-month
+                                    high.</strong
+                                >
+                                With oil above ₹8,500/barrel, the RBI cannot cut
+                                rates. GSEC10IETF — the 25% position — was
+                                falling in price in exactly the scenario the
+                                site claimed it would protect against. The crash
+                                shield was becoming a crash contributor.
+                            </li>
+                            <li>
+                                <strong
+                                    >Silver's supply deficit is now in its 5th
+                                    consecutive year.</strong
+                                >
+                                Industrial demand from solar, EVs and AI data
+                                centres hit an all-time high in 2024. A 5%
+                                allocation was intellectually inconsistent with
+                                that conviction.
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="clog-changes">
+                        <div class="clog-change down">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">GSEC10IETF</span>
+                                <span class="clog-arrow">↓</span>
+                                <span class="clog-move down">25% → 8%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                Long bonds are the biggest loser in a persistent
+                                inflation + high oil environment. The RBI cannot
+                                cut rates when Brent is at $110. Reduced
+                                drastically. Kept as a small position for the
+                                scenario where inflation eventually cools and a
+                                rate-cut cycle begins.
+                            </div>
+                        </div>
+                        <div class="clog-change down">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">EBBETF0430</span>
+                                <span class="clog-arrow">↓</span>
+                                <span class="clog-move down">15% → 12%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                Medium-duration bonds are far less
+                                rate-sensitive and still earn a real yield.
+                                Trimmed modestly — still the anchor for the deep
+                                recession / deflation scenario.
+                            </div>
+                        </div>
+                        <div class="clog-change down">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">MON100</span>
+                                <span class="clog-arrow">↓</span>
+                                <span class="clog-move down">10% → 5%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                The Magnificent 7 are expensive by any
+                                historical measure. In 2024, European stocks
+                                outperformed US stocks by 23%, emerging markets
+                                by 34%. Halved. Consider this a placeholder —
+                                the ideal replacement is a broader global ETF.
+                            </div>
+                        </div>
+                        <div class="clog-change up">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">GOLDBEES</span>
+                                <span class="clog-arrow">↑</span>
+                                <span class="clog-move up">10% → 20%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                Dalio's updated gold recommendation is 15% of
+                                total portfolio. At 20% of Vault (= 16% of
+                                total), v2.0 aligns with this. Gold is not
+                                paranoia — it is the second-largest reserve
+                                currency globally, and central banks have been
+                                accumulating it for three years.
+                            </div>
+                        </div>
+                        <div class="clog-change up">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">SILVERBEES</span>
+                                <span class="clog-arrow">↑</span>
+                                <span class="clog-move up">5% → 13%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                Five consecutive years of supply deficit.
+                                Industrial demand at an all-time high. Solar PV
+                                grew from 11% to 29% of silver demand in a
+                                decade. At 4% of total (v1.0), silver tripling
+                                adds 12% to the portfolio. At 10.4% (v2.0), the
+                                same move adds 31%. Sized to match the
+                                conviction.
+                            </div>
+                        </div>
+                        <div class="clog-change up">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">LIQUIDBEES</span>
+                                <span class="clog-arrow">↑</span>
+                                <span class="clog-move up">15% → 20%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                More dry powder = more powerful annual
+                                rebalancing. In volatile, war-adjacent market
+                                conditions, the ability to buy crashed assets
+                                cheaply is the hidden engine of this strategy.
+                                Also strengthens the failsafe layer if exchange
+                                access becomes intermittent.
+                            </div>
+                        </div>
+                        <div class="clog-change neutral">
+                            <div class="clog-c-top">
+                                <span class="clog-ticker">NIFTYBEES</span>
+                                <span class="clog-arrow">↑</span>
+                                <span class="clog-move up">20% → 22%</span>
+                            </div>
+                            <div class="clog-c-why">
+                                India is structurally a stronger growth story
+                                than the US right now — younger demographics,
+                                manufacturing shift from China, infrastructure
+                                buildout. Small increase. Home bias is justified
+                                here.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clog-tradeoff">
+                        <div class="clog-t-label">⚠ Honest Trade-Off</div>
+                        <p>
+                            v2.0 has stronger inflation protection and weaker
+                            recession protection compared to v1.0. Bond coverage
+                            dropped from 40% to 20% of the Vault. If the Iran
+                            conflict ends quickly, oil collapses, and the RBI
+                            cuts rates aggressively into a deflation — v2.0
+                            underperforms v1.0. That is a deliberate, eyes-open
+                            choice for the current environment. When conditions
+                            shift materially, this will be rebalanced again.
+                        </p>
+                    </div>
+
+                    <div class="clog-seasons-grid">
+                        <div class="clog-season">
+                            <div class="clog-s-label">🌱 Growth</div>
+                            <div class="clog-s-vals">
+                                <span class="clog-old">30%</span>
+                                <span class="clog-arrow-s">→</span>
+                                <span class="clog-new">27%</span>
+                            </div>
+                        </div>
+                        <div class="clog-season">
+                            <div class="clog-s-label">📉 Recession</div>
+                            <div class="clog-s-vals">
+                                <span class="clog-old">40%</span>
+                                <span class="clog-arrow-s">→</span>
+                                <span class="clog-new warn">20%</span>
+                            </div>
+                        </div>
+                        <div class="clog-season">
+                            <div class="clog-s-label">🔥 Inflation</div>
+                            <div class="clog-s-vals">
+                                <span class="clog-old">15%</span>
+                                <span class="clog-arrow-s">→</span>
+                                <span class="clog-new strong">33%</span>
+                            </div>
+                        </div>
+                        <div class="clog-season">
+                            <div class="clog-s-label">❄️ Deflation</div>
+                            <div class="clog-s-vals">
+                                <span class="clog-old">15%</span>
+                                <span class="clog-arrow-s">→</span>
+                                <span class="clog-new">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clog-v1 rv">
+                    <div class="clog-v1-label">v1.0 — Original</div>
+                    <div class="clog-v1-note">
+                        The foundation. Built on Dalio's original All-Weather
+                        allocation, adapted for India. Still valid in a
+                        low-inflation, rate-cutting environment. Archived here
+                        for reference.
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
             <section id="simulator" style="scroll-margin-top: 5rem">
                 <div class="s-eye rv">Growth Simulator</div>
                 <h2 class="s-ttl rv">
@@ -1707,7 +2202,7 @@
                     </div>
                     <div class="simst">
                         <div class="ss aw">
-                            <div class="ss-lbl">🛡 All-Weather — ~11% p.a.</div>
+                            <div class="ss-lbl">🛡 All-Weather — ~10% p.a.</div>
                             <div class="ss-val" id="val-aw"></div>
                             <div class="ss-g" id="gain-aw"></div>
                         </div>
@@ -1729,14 +2224,16 @@
                         <span class="di">ℹ️</span>
                         <p>
                             <strong>Honest disclaimer:</strong> These are
-                            projections using fixed historical averages. Real
-                            returns vary — sometimes a lot. The All-Weather
-                            strategy has historically had smoother drawdowns
-                            than pure equity, but it also grows more slowly than
-                            Nifty in strong bull markets. The tradeoff is
-                            <em>less pain when things go wrong</em>, not higher
-                            returns. Use these numbers to understand shape and
-                            magnitude, not as predictions.
+                            projections using fixed historical averages. v2.0
+                            uses ~10% p.a. — slightly lower than v1.0's 11% —
+                            because gold and silver don't compound like
+                            equities. The trade-off is
+                            <em
+                                >stronger real-value preservation in
+                                inflationary environments</em
+                            >, not higher nominal returns. Real returns vary —
+                            sometimes a lot. Use these numbers to understand
+                            shape and magnitude, not as predictions.
                         </p>
                     </div>
                 </div>
@@ -1855,7 +2352,7 @@
             <section id="rules" style="scroll-margin-top: 5rem">
                 <div class="s-eye rv">The Only Rules That Matter</div>
                 <h2 class="s-ttl rv">
-                    Three rules.<br /><em
+                    Four rules.<br /><em
                         >The strategy lives or dies by them.</em
                     >
                 </h2>
@@ -1903,6 +2400,19 @@
                             it.
                         </div>
                     </div>
+                    <div class="rc rv d4">
+                        <span class="rc-n">4</span>
+                        <div class="rc-tag">Rule 04</div>
+                        <div class="rc-t">Tax Is a Real Cost</div>
+                        <div class="rc-x">
+                            Every rebalancing sell triggers a tax event. LTCG at
+                            12.5% above ₹1.25L, STCG at 20% if under a year.
+                            Over 20–30 years, this compounds into a meaningful
+                            drag. Before selling to rebalance, check if new SIP
+                            money can buy the underweight asset instead — you
+                            rebalance without triggering a taxable event.
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -1915,6 +2425,17 @@
                 debt cycles, watching a changing world order. One opinionated
                 framework for surviving whatever comes next. Not financial
                 advice — this is just what made sense to me.
+            </p>
+            <p
+                style="
+                    margin-top: 0.3rem;
+                    color: var(--sage);
+                    font-weight: 500;
+                    font-size: 0.68rem;
+                "
+            >
+                v2.0 updated 26 March 2026 · Macro rebalance for inflationary,
+                war-adjacent conditions.
             </p>
             <p style="margin-top: 0.3rem; font-weight: 600">
                 Do your own research. Talk to a SEBI-registered advisor before
@@ -1929,6 +2450,7 @@
                 { id: "seasons", label: "Seasons" },
                 { id: "strategy", label: "80/20" },
                 { id: "blueprint", label: "Blueprint" },
+                { id: "changelog", label: "v2.0" },
                 { id: "simulator", label: "Simulate" },
                 { id: "crisis", label: "Crashes" },
                 { id: "failsafe", label: "Failsafe" },
@@ -2055,21 +2577,21 @@
                     title: "The Parachute: Government Bonds",
                     cls: "ar",
                     color: "var(--sky)",
-                    text: "When stocks crash, central banks cut interest rates. This pushes up bond prices — your GSEC10IETF rises sharply, directly offsetting the fall in your equity holdings.",
+                    text: "When stocks crash, central banks cut interest rates — pushing up bond prices. GSEC10IETF and EBBETF0430 still provide this cushion. Note: v2.0 deliberately reduced bond coverage from 40% to 20% to fund stronger inflation protection. This is the honest trade-off.",
                 },
                 "btn-inflation": {
                     icon: "🥇",
                     title: "The Armour: Gold & Silver",
                     cls: "ai",
                     color: "var(--gold)",
-                    text: "When paper money loses purchasing power, real assets hold value. GOLDBEES and SILVERBEES preserve your real wealth while everything denominated in rupees quietly shrinks.",
+                    text: "v2.0's biggest conviction. GOLDBEES (20%) and SILVERBEES (13%) now form 33% of the Vault — more than double v1.0's 15%. With Brent crude above $100, five consecutive years of silver supply deficit, and Dalio recommending 15% gold, this is where the portfolio puts its weight.",
                 },
                 "btn-deflation": {
                     icon: "💵",
                     title: "The Anchor: Cash & Short Bonds",
                     cls: "ad",
                     color: "var(--lav)",
-                    text: "When prices fall broadly, cash is king. LIQUIDBEES is pegged at \u20b91000 and never falls. EBBETF0430 provides locked-in yield. Both act as dry powder to buy assets cheap when others are panic-selling.",
+                    text: "When prices fall broadly, cash is king. LIQUIDBEES is pegged at \u20b91000 and never falls — increased to 20% in v2.0. EBBETF0430 provides locked-in yield. Together they act as dry powder to buy assets cheap when others are panic-selling, and as a failsafe if exchange access becomes intermittent.",
                 },
             };
             var sBtns = document.querySelectorAll(".sbn");
@@ -2098,51 +2620,51 @@
                 {
                     label: "Large Cap India",
                     ticker: "NIFTYBEES",
-                    pct: 20,
+                    pct: 22,
                     color: "#8ec9b0",
-                    desc: "The core growth engine. Holds India's top 50 companies. When the Indian economy grows, this is what drives your returns.",
+                    desc: "The core growth engine. Holds India's top 50 companies. India's structural story — young demographics, manufacturing shift from China, infrastructure buildout — makes home bias justified here. Slightly increased in v2.0.",
                 },
                 {
                     label: "US Tech Exposure",
                     ticker: "MON100",
-                    pct: 10,
+                    pct: 5,
                     color: "#a8d4c2",
-                    desc: "Global insurance. Holds Apple, Microsoft, Nvidia. If Indian markets stagnate while the world grows, this keeps you exposed to global upside.",
+                    desc: "Global insurance — halved in v2.0. The Magnificent 7 are expensive by any historical measure. In 2024, European and emerging markets significantly outperformed US tech. Kept as a placeholder; consider a broader global ETF in future.",
                 },
                 {
                     label: "Aggressive Bonds",
                     ticker: "GSEC10IETF",
-                    pct: 25,
+                    pct: 8,
                     color: "#8db8d8",
-                    desc: "The crash shield. Long-duration government bonds. When recession hits and RBI cuts rates, bond prices rise — directly offsetting your stock losses.",
+                    desc: "Dramatically cut from 25% to 8% in v2.0. Long bonds only work when the RBI is cutting rates. With oil above ₹8,500/barrel, the RBI cannot cut. Kept as a small position for when inflation eventually cools and a rate cycle begins.",
                 },
                 {
                     label: "Steady Bonds",
                     ticker: "EBBETF0430",
-                    pct: 15,
+                    pct: 12,
                     color: "#a8cce8",
-                    desc: "The quiet anchor. Medium-duration bonds maturing around 2030. No drama — just steady, government-backed compounding that does not surprise you.",
+                    desc: "The quiet anchor. Medium-duration bonds are far less sensitive to rate moves than long bonds. Trimmed modestly in v2.0. Still earns a real yield and anchors the deflation scenario.",
                 },
                 {
                     label: "Gold",
                     ticker: "GOLDBEES",
-                    pct: 10,
+                    pct: 20,
                     color: "#e8c878",
-                    desc: "The inflation fighter. When paper money loses value, gold holds purchasing power. It has never gone to zero in 5,000 years of recorded use as money.",
+                    desc: "Doubled in v2.0. Dalio himself now recommends 15% of total portfolio in gold — calling it the second-largest reserve currency. At 20% of Vault (= 16% of total), this aligns with his updated thesis. Central banks, including the RBI, have been accumulating gold since 2022.",
                 },
                 {
                     label: "Silver",
                     ticker: "SILVERBEES",
-                    pct: 5,
+                    pct: 13,
                     color: "#f0dca0",
-                    desc: "Precious metal plus industrial demand. Silver is used in solar panels, EVs, and chips. Benefits from both inflation protection and clean-energy growth.",
+                    desc: "More than doubled in v2.0. Five consecutive years of supply deficit. Industrial demand hit an all-time high in 2024, driven by solar panels, EVs, and AI data centres. At 10.4% of total portfolio, a major move in silver now meaningfully impacts returns.",
                 },
                 {
                     label: "Liquid Cash",
                     ticker: "LIQUIDBEES",
-                    pct: 15,
+                    pct: 20,
                     color: "#d4cfc8",
-                    desc: "Dry powder. Pegged at \u20b91000 — it never falls. When stocks crash 30-40%, you sell this and buy equities cheap. This is what makes the annual rebalancing powerful.",
+                    desc: "Increased to 20% in v2.0. More dry powder = more powerful annual rebalancing. In volatile, war-adjacent conditions, the ability to buy crashed assets is the hidden engine of this strategy. Also reinforces the failsafe layer if exchange access becomes intermittent.",
                 },
             ];
 
@@ -2262,7 +2784,7 @@
                     fdV = lump;
                 for (var y = 1; y <= years; y++) {
                     for (var m = 0; m < 12; m++) {
-                        awV = awV * (1 + 0.11 / 12) + sip;
+                        awV = awV * (1 + 0.1 / 12) + sip;
                         nifV = nifV * (1 + 0.13 / 12) + sip;
                         fdV = fdV * (1 + 0.065 / 12) + sip;
                     }
