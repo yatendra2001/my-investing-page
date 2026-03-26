@@ -1,0 +1,2694 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            My Investing Philosophy — Honest Investing, Simply Explained
+        </title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f8f5f0'/><text y='.88em' x='50%' text-anchor='middle' font-size='72' fill='%234e8c72' font-family='serif'>&#9678;</text></svg>"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            :root {
+                --cream: #f8f5f0;
+                --white: #ffffff;
+                --ink: #18160f;
+                --warm: #6e6860;
+                --muted: #a09890;
+                --border: #ece8e2;
+                --border2: #ddd8d0;
+                --sage: #4e8c72;
+                --sage-lt: #d6ede5;
+                --sage-bg: #edf7f3;
+                --blush: #c07458;
+                --blush-lt: #f5e0d8;
+                --blush-bg: #fdf2ee;
+                --sky: #4a82b4;
+                --sky-lt: #d4e6f5;
+                --sky-bg: #eef5fb;
+                --gold: #b8900a;
+                --gold-lt: #f5e8c0;
+                --gold-bg: #fdf7e6;
+                --lav: #7a6ec0;
+                --lav-lt: #e4e0f5;
+                --lav-bg: #f2f0fb;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                background: var(--cream);
+                color: var(--ink);
+                font-family: "DM Sans", sans-serif;
+                font-weight: 300;
+                line-height: 1.7;
+                -webkit-font-smoothing: antialiased;
+                overflow-x: hidden;
+            }
+
+            /* ── PROGRESS ── */
+            #mobile-bar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                z-index: 500;
+                background: transparent;
+            }
+            #mobile-fill {
+                height: 100%;
+                background: linear-gradient(90deg, var(--sage), var(--gold));
+                width: 0%;
+            }
+            #prog-track {
+                position: fixed;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 200;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            @media (max-width: 900px) {
+                #prog-track {
+                    display: none;
+                }
+            }
+            #prog-rail {
+                width: 2px;
+                height: 200px;
+                background: var(--border2);
+                border-radius: 99px;
+                position: relative;
+            }
+            #prog-fill {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(180deg, var(--sage), var(--gold));
+                border-radius: 99px;
+                height: 0%;
+            }
+            #prog-pct {
+                font-size: 0.55rem;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+                margin-top: 7px;
+            }
+            .pdot {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: var(--border2);
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            .pdot:hover,
+            .pdot.lit {
+                background: var(--sage-lt);
+                border: 1.5px solid var(--sage);
+            }
+            .pdot.here {
+                background: var(--ink);
+                width: 8px;
+                height: 8px;
+                left: calc(50% - 1.5px);
+            }
+            .pdot-tip {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: var(--ink);
+                color: #fff;
+                font-size: 0.6rem;
+                font-weight: 500;
+                padding: 3px 7px;
+                border-radius: 5px;
+                white-space: nowrap;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.18s;
+            }
+            .pdot:hover .pdot-tip {
+                opacity: 1;
+            }
+
+            /* ── NAV ── */
+            nav {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(248, 245, 240, 0.92);
+                backdrop-filter: blur(14px);
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-in {
+                max-width: 1080px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .nav-logo {
+                font-family: "Cormorant Garamond", serif;
+                font-variant: small-caps;
+                font-size: 1.05rem;
+                font-weight: 600;
+                color: var(--ink);
+                text-decoration: none;
+                letter-spacing: 0.04em;
+            }
+            .nav-hrs {
+                font-size: 0.6rem;
+                font-weight: 500;
+                color: var(--muted);
+                letter-spacing: 0.1em;
+                background: var(--border);
+                padding: 0.18rem 0.6rem;
+                border-radius: 99px;
+                margin-left: 0.6rem;
+            }
+            .nav-links {
+                display: flex;
+                gap: 1.5rem;
+                list-style: none;
+            }
+            .nav-links a {
+                text-decoration: none;
+                color: var(--warm);
+                font-size: 0.68rem;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                transition: color 0.18s;
+            }
+            .nav-links a:hover {
+                color: var(--ink);
+            }
+            @media (max-width: 760px) {
+                .nav-links {
+                    display: none;
+                }
+            }
+
+            /* ── LAYOUT ── */
+            .wrap {
+                max-width: 1080px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+            section {
+                padding: 6.5rem 0;
+            }
+            hr.div {
+                border: none;
+                border-top: 1px solid var(--border);
+            }
+
+            /* ── HERO ── */
+            .hero {
+                min-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 4rem 2rem 5rem;
+                position: relative;
+            }
+            .hero-kicker {
+                display: flex;
+                align-items: center;
+                gap: 0.65rem;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: var(--sage);
+                margin-bottom: 1.8rem;
+                animation: fu 0.7s 0.1s both;
+            }
+            .hero-kicker::before,
+            .hero-kicker::after {
+                content: "";
+                width: 24px;
+                height: 1px;
+                background: currentColor;
+                opacity: 0.5;
+            }
+            .hero h1 {
+                font-family: "Cormorant Garamond", serif;
+                font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+                font-weight: 600;
+                line-height: 1.15;
+                letter-spacing: -0.025em;
+                color: var(--ink);
+                max-width: none;
+                margin: 0 auto 1.5rem;
+                animation: fu 0.7s 0.22s both;
+            }
+            .hero h1 .hl {
+                display: block;
+            }
+            @media (min-width: 640px) {
+                .hero h1 .hl {
+                    white-space: nowrap;
+                }
+            }
+            .hero h1 em {
+                font-style: italic;
+                color: var(--sage);
+            }
+            .hero-sub {
+                font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+                color: var(--warm);
+                font-weight: 300;
+                max-width: 500px;
+                margin: 0 auto 2.8rem;
+                line-height: 1.9;
+                animation: fu 0.7s 0.35s both;
+            }
+            .hero-disclaimer {
+                font-size: 0.62rem;
+                color: var(--muted);
+                font-style: italic;
+                margin-top: 1rem;
+                animation: fu 0.7s 0.55s both;
+                font-weight: 600;
+            }
+
+            /* stat strip */
+            .sstrip {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                border: 1.5px solid var(--border2);
+                border-radius: 14px;
+                background: var(--white);
+                max-width: 580px;
+                margin: 0 auto;
+                overflow: hidden;
+                animation: fu 0.7s 0.44s both;
+            }
+            .ssi {
+                padding: 1.2rem 1.5rem;
+                text-align: center;
+                border-right: 1px solid var(--border);
+            }
+            .ssi:last-child {
+                border-right: none;
+            }
+            .ssn {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.9rem;
+                font-weight: 700;
+                color: var(--ink);
+                letter-spacing: 0.01em;
+                line-height: 1;
+                margin-bottom: 0.15rem;
+                font-variant-numeric: lining-nums;
+            }
+            .ssl {
+                font-size: 0.58rem;
+                color: var(--muted);
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            }
+
+            .hero-scroll {
+                position: absolute;
+                bottom: 1.8rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.4rem;
+                color: var(--muted);
+                font-size: 0.58rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                font-weight: 500;
+                animation: fu 0.7s 0.7s both;
+            }
+            .ha {
+                animation: bounce 2s ease-in-out infinite;
+                font-size: 0.85rem;
+            }
+            @keyframes fu {
+                from {
+                    opacity: 0;
+                    transform: translateY(16px);
+                }
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+            @keyframes bounce {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(4px);
+                }
+            }
+
+            /* ── NUMBER FLOW ── */
+            .nf {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: bottom;
+            }
+            .nf-inner {
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            .nf-digit {
+                height: 1em;
+                line-height: 1em;
+                display: block;
+                text-align: center;
+            }
+
+            /* ── SECTION HEAD ── */
+            .s-eye {
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.65rem;
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+            }
+            .s-eye::before {
+                content: "";
+                width: 16px;
+                height: 1px;
+                background: var(--muted);
+            }
+            .s-ttl {
+                font-family: "Cormorant Garamond", serif;
+                font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                line-height: 1.15;
+                color: var(--ink);
+                margin-bottom: 1rem;
+            }
+            .s-ttl em {
+                font-style: italic;
+                color: var(--sage);
+            }
+            .s-bod {
+                font-size: 0.93rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.85;
+                max-width: 560px;
+            }
+
+            /* ── REVEAL ── */
+            .rv {
+                opacity: 0;
+                transform: translateY(18px);
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s ease;
+            }
+            .rv.in {
+                opacity: 1;
+                transform: none;
+            }
+            .d1 {
+                transition-delay: 0.08s;
+            }
+            .d2 {
+                transition-delay: 0.16s;
+            }
+            .d3 {
+                transition-delay: 0.24s;
+            }
+            .d4 {
+                transition-delay: 0.32s;
+            }
+
+            /* ── WHY SECTION (was "first principles") ── */
+            .why-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 3rem;
+            }
+            @media (max-width: 680px) {
+                .why-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .wc {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 16px;
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+                transition:
+                    transform 0.22s,
+                    box-shadow 0.22s;
+            }
+            .wc:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            }
+            .wc::before {
+                content: attr(data-n);
+                position: absolute;
+                top: -16px;
+                right: 12px;
+                font-family: "Cormorant Garamond", serif;
+                font-size: 6.5rem;
+                font-weight: 700;
+                color: var(--border);
+                line-height: 1;
+                pointer-events: none;
+            }
+            .wc-ico {
+                font-size: 1.4rem;
+                margin-bottom: 0.8rem;
+            }
+            .wc-t {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.2rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                letter-spacing: 0.02em;
+                color: var(--ink);
+                margin-bottom: 0.5rem;
+            }
+            .wc-x {
+                font-size: 0.84rem;
+                color: var(--warm);
+                line-height: 1.78;
+                font-weight: 300;
+            }
+
+            /* ── SEASONS ── */
+            .sg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+                margin: 2.5rem 0 1.4rem;
+            }
+            @media (max-width: 580px) {
+                .sg {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .sbn {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 13px;
+                padding: 1.3rem;
+                text-align: left;
+                cursor: pointer;
+                display: flex;
+                gap: 0.85rem;
+                align-items: flex-start;
+                transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            .sbn:hover {
+                border-color: var(--ink);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            }
+            .s-ico {
+                font-size: 1.3rem;
+                flex-shrink: 0;
+            }
+            .s-lbl {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 0.98rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                color: var(--ink);
+                margin-bottom: 0.15rem;
+            }
+            .s-dsc {
+                font-size: 0.73rem;
+                color: var(--muted);
+                font-weight: 300;
+            }
+            .sbn.ag {
+                background: var(--sage-bg);
+                border-color: var(--sage);
+            }
+            .sbn.ar {
+                background: var(--sky-bg);
+                border-color: var(--sky);
+            }
+            .sbn.ai {
+                background: var(--gold-bg);
+                border-color: var(--gold);
+            }
+            .sbn.ad {
+                background: var(--lav-bg);
+                border-color: var(--lav);
+            }
+            .sr {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 13px;
+                padding: 1.6rem;
+                min-height: 100px;
+                display: flex;
+                align-items: center;
+                transition: border-color 0.3s;
+            }
+            .sr-ph {
+                color: var(--muted);
+                font-size: 0.83rem;
+                font-weight: 300;
+                width: 100%;
+                text-align: center;
+            }
+            .src {
+                width: 100%;
+                display: flex;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .src-ico {
+                font-size: 1.7rem;
+                flex-shrink: 0;
+                margin-top: 0.05rem;
+            }
+            .src-t {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.15rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                color: var(--ink);
+                margin-bottom: 0.22rem;
+            }
+            .src-x {
+                font-size: 0.83rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.75;
+            }
+
+            /* ── 80/20 ── */
+            .spg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 3rem;
+            }
+            @media (max-width: 660px) {
+                .spg {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .spc {
+                border-radius: 18px;
+                padding: 2.2rem;
+                border: 1.5px solid transparent;
+                transition: box-shadow 0.22s;
+            }
+            .spc:hover {
+                box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+            }
+            .spc.vault {
+                background: var(--sage-bg);
+                border-color: var(--sage);
+            }
+            .spc.play {
+                background: var(--gold-bg);
+                border-color: var(--gold);
+            }
+            .sp-pct {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 4.2rem;
+                font-weight: 700;
+                line-height: 1;
+                letter-spacing: -0.04em;
+                margin-bottom: 0.15rem;
+            }
+            .vault .sp-pct {
+                color: var(--sage);
+            }
+            .play .sp-pct {
+                color: var(--gold);
+            }
+            .sp-nm {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.2rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                letter-spacing: 0.02em;
+                color: var(--ink);
+                margin-bottom: 0.65rem;
+            }
+            .sp-dx {
+                font-size: 0.83rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.78;
+                margin-bottom: 1.2rem;
+            }
+            .sp-ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 0.45rem;
+            }
+            .sp-ul li {
+                font-size: 0.76rem;
+                color: var(--ink);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 400;
+            }
+            .bd {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .vault .bd {
+                background: var(--sage);
+            }
+            .play .bd {
+                background: var(--gold);
+            }
+
+            /* ── BLUEPRINT ── */
+            .bpw {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 20px;
+                overflow: hidden;
+                margin-top: 3rem;
+            }
+            .bph {
+                background: var(--cream);
+                padding: 2rem 2.4rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .bph p {
+                font-size: 0.81rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.78;
+            }
+            .bpb {
+                padding: 2.4rem;
+            }
+            .bpg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2.8rem;
+                align-items: center;
+            }
+            @media (max-width: 760px) {
+                .bpg {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .cwrap {
+                position: relative;
+                height: 340px;
+                max-width: 360px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .dp {
+                background: var(--cream);
+                border: 1.5px solid var(--border);
+                border-radius: 14px;
+                padding: 1.8rem;
+                min-height: 230px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                transition: border-color 0.28s;
+            }
+            .dp-ph {
+                text-align: center;
+                color: var(--muted);
+                font-size: 0.8rem;
+                font-weight: 300;
+            }
+            .dp-ph-s {
+                font-size: 1.2rem;
+                opacity: 0.3;
+                margin-bottom: 0.4rem;
+            }
+            .dp-lbl {
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.2rem;
+            }
+            .dp-tkr {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 2rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--ink);
+                margin-bottom: 0.9rem;
+            }
+            .dp-pr {
+                display: flex;
+                align-items: baseline;
+                gap: 0.45rem;
+                margin-bottom: 1.1rem;
+                padding-bottom: 1.1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .dp-pv {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 2.6rem;
+                font-weight: 700;
+                line-height: 1;
+            }
+            .dp-of {
+                font-size: 0.72rem;
+                color: var(--muted);
+            }
+            .dp-wl {
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.4rem;
+            }
+            .dp-wd {
+                font-size: 0.86rem;
+                color: var(--ink);
+                font-weight: 300;
+                line-height: 1.75;
+            }
+
+            /* ── SIMULATOR ── */
+            .simsh {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 18px;
+                padding: 2.6rem;
+                margin-top: 3rem;
+            }
+            @media (max-width: 620px) {
+                .simsh {
+                    padding: 1.5rem;
+                }
+            }
+            .simctl {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-bottom: 2.2rem;
+            }
+            @media (max-width: 680px) {
+                .simctl {
+                    grid-template-columns: 1fr;
+                    gap: 1.4rem;
+                }
+            }
+            .simctl label {
+                display: block;
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.35rem;
+            }
+            .simv {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.65rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--ink);
+                margin-bottom: 0.5rem;
+                min-height: 1.8rem;
+            }
+            input[type="range"] {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 3px;
+                border-radius: 99px;
+                background: var(--border2);
+                outline: none;
+                cursor: pointer;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background: var(--ink);
+                border: 2.5px solid var(--cream);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+                transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            input[type="range"]::-webkit-slider-thumb:hover {
+                transform: scale(1.3);
+            }
+            .simst {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.9rem;
+                margin-bottom: 1.8rem;
+            }
+            @media (max-width: 680px) {
+                .simst {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .ss {
+                border-radius: 12px;
+                padding: 1.1rem 1.3rem;
+                border: 1.5px solid transparent;
+                transition: transform 0.2s;
+            }
+            .ss:hover {
+                transform: translateY(-2px);
+            }
+            .ss.aw {
+                background: var(--sage-bg);
+                border-color: rgba(78, 140, 114, 0.3);
+            }
+            .ss.nif {
+                background: var(--sky-bg);
+                border-color: rgba(74, 130, 180, 0.3);
+            }
+            .ss.fd {
+                background: var(--gold-bg);
+                border-color: rgba(184, 144, 10, 0.3);
+            }
+            .ss-lbl {
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 0.3rem;
+            }
+            .aw .ss-lbl {
+                color: var(--sage);
+            }
+            .nif .ss-lbl {
+                color: var(--sky);
+            }
+            .fd .ss-lbl {
+                color: var(--gold);
+            }
+            .ss-val {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.65rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--ink);
+                min-height: 1.9rem;
+            }
+            .ss-g {
+                font-size: 0.68rem;
+                color: var(--muted);
+                margin-top: 0.12rem;
+                font-weight: 300;
+            }
+            .scw {
+                position: relative;
+                height: 260px;
+            }
+            .simnote {
+                font-size: 0.64rem;
+                color: var(--muted);
+                margin-top: 0.8rem;
+                font-style: italic;
+                line-height: 1.6;
+                border-top: 1px solid var(--border);
+                padding-top: 0.8rem;
+            }
+
+            /* ── CRISIS ── */
+            .ctabs {
+                display: flex;
+                gap: 0.45rem;
+                flex-wrap: wrap;
+                margin-bottom: 1.8rem;
+            }
+            .ct {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 99px;
+                padding: 0.38rem 0.95rem;
+                font-size: 0.7rem;
+                font-weight: 500;
+                letter-spacing: 0.03em;
+                color: var(--warm);
+                cursor: pointer;
+                transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            .ct:hover {
+                border-color: var(--ink);
+                color: var(--ink);
+            }
+            .ct.on {
+                background: var(--ink);
+                border-color: var(--ink);
+                color: #fff;
+            }
+            .cly {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                align-items: start;
+            }
+            @media (max-width: 700px) {
+                .cly {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .ccard {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 16px;
+                padding: 1.8rem;
+            }
+            .cy {
+                font-size: 0.58rem;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.22rem;
+            }
+            .cn {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.35rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                color: var(--ink);
+                margin-bottom: 0.6rem;
+            }
+            .cdesc {
+                font-size: 0.81rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.75;
+                margin-bottom: 1.3rem;
+            }
+            .cbrow {
+                margin-bottom: 0.8rem;
+            }
+            .cbll {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.7rem;
+                font-weight: 500;
+                margin-bottom: 0.25rem;
+            }
+            .cbt {
+                background: var(--border);
+                border-radius: 99px;
+                height: 7px;
+                overflow: hidden;
+            }
+            .cbf {
+                height: 100%;
+                border-radius: 99px;
+                transition: width 0.85s cubic-bezier(0.34, 1, 0.64, 1);
+            }
+            .fsage {
+                background: var(--sage);
+            }
+            .fblush {
+                background: var(--blush);
+            }
+            .crec {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.65rem;
+                margin-top: 1.1rem;
+            }
+            .rcc {
+                border-radius: 9px;
+                padding: 0.75rem 0.95rem;
+            }
+            .rcc.rs {
+                background: var(--sage-bg);
+            }
+            .rcc.rb {
+                background: var(--blush-bg);
+            }
+            .rcc-l {
+                font-size: 0.56rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 0.18rem;
+            }
+            .rcc-v {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--ink);
+            }
+            .ccw {
+                position: relative;
+                height: 290px;
+            }
+
+            /* ── DISCLAIMER BOX ── */
+            .disc-box {
+                background: var(--cream);
+                border: 1.5px solid var(--border);
+                border-radius: 14px;
+                padding: 1.5rem 2rem;
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .disc-box .di {
+                font-size: 1.1rem;
+                flex-shrink: 0;
+                margin-top: 0.05rem;
+            }
+            .disc-box p {
+                font-size: 0.78rem;
+                color: var(--warm);
+                font-weight: 300;
+                line-height: 1.75;
+            }
+            .disc-box strong {
+                color: var(--ink);
+                font-weight: 500;
+            }
+
+            /* ── FAILSAFE ── */
+            .fss {
+                background: var(--ink);
+                border-radius: 20px;
+                padding: 3.2rem;
+                position: relative;
+                overflow: hidden;
+            }
+            @media (max-width: 620px) {
+                .fss {
+                    padding: 1.8rem;
+                }
+            }
+            .fss .s-eye {
+                color: rgba(255, 255, 255, 0.3);
+            }
+            .fss .s-eye::before {
+                background: rgba(255, 255, 255, 0.2);
+            }
+            .fss .s-ttl {
+                color: var(--cream);
+            }
+            .fss .s-bod {
+                color: rgba(255, 255, 255, 0.48);
+            }
+            .fsdeco {
+                position: absolute;
+                top: -40px;
+                right: -40px;
+                font-size: 13rem;
+                opacity: 0.03;
+                pointer-events: none;
+                line-height: 1;
+            }
+            .fsq {
+                background: rgba(255, 255, 255, 0.05);
+                border-left: 3px solid rgba(255, 255, 255, 0.18);
+                border-radius: 0 11px 11px 0;
+                padding: 1.2rem 1.6rem;
+                margin: 1.8rem 0;
+            }
+            .fsq p {
+                font-family: "Cormorant Garamond", serif;
+                font-style: italic;
+                font-size: 0.98rem;
+                color: rgba(255, 255, 255, 0.72);
+                line-height: 1.65;
+            }
+            .fsq cite {
+                display: block;
+                font-size: 0.62rem;
+                color: rgba(255, 255, 255, 0.28);
+                margin-top: 0.45rem;
+                font-style: normal;
+                letter-spacing: 0.06em;
+            }
+            .fsb {
+                font-size: 0.86rem;
+                color: rgba(255, 255, 255, 0.48);
+                font-weight: 300;
+                line-height: 1.82;
+                margin-bottom: 0.7rem;
+            }
+            .fsb code {
+                background: rgba(255, 255, 255, 0.1);
+                color: #f5d98a;
+                padding: 0.1rem 0.45rem;
+                border-radius: 4px;
+                font-size: 0.78rem;
+                font-weight: 500;
+            }
+            .fsb strong {
+                color: rgba(255, 255, 255, 0.8);
+                font-weight: 500;
+            }
+            .fscards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.9rem;
+                margin-top: 2.2rem;
+            }
+            @media (max-width: 660px) {
+                .fscards {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .fsc {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 1.4rem;
+                transition: background 0.18s;
+            }
+            .fsc:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .fsc-i {
+                font-size: 1.3rem;
+                margin-bottom: 0.7rem;
+            }
+            .fsc-t {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 0.98rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                color: rgba(255, 255, 255, 0.88);
+                margin-bottom: 0.4rem;
+            }
+            .fsc-x {
+                font-size: 0.74rem;
+                color: rgba(255, 255, 255, 0.38);
+                line-height: 1.7;
+                font-weight: 300;
+            }
+
+            /* ── RULES ── */
+            .rg {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.9rem;
+                margin-top: 3rem;
+            }
+            @media (max-width: 660px) {
+                .rg {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .rc {
+                background: var(--white);
+                border: 1.5px solid var(--border);
+                border-radius: 16px;
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            .rc:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
+            }
+            .rc-n {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 5rem;
+                font-weight: 700;
+                position: absolute;
+                top: -0.8rem;
+                right: 0.9rem;
+                color: var(--border);
+                line-height: 1;
+                pointer-events: none;
+            }
+            .rc-tag {
+                display: inline-block;
+                border-radius: 99px;
+                padding: 0.2rem 0.7rem;
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                margin-bottom: 0.85rem;
+            }
+            .rc:nth-child(1) .rc-tag {
+                background: var(--blush-lt);
+                color: var(--blush);
+            }
+            .rc:nth-child(2) .rc-tag {
+                background: var(--sky-lt);
+                color: var(--sky);
+            }
+            .rc:nth-child(3) .rc-tag {
+                background: var(--gold-lt);
+                color: var(--gold);
+            }
+            .rc-t {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.1rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                color: var(--ink);
+                margin-bottom: 0.5rem;
+                letter-spacing: 0.02em;
+            }
+            .rc-x {
+                font-size: 0.8rem;
+                color: var(--warm);
+                line-height: 1.78;
+                font-weight: 300;
+            }
+
+            /* ── FOOTER ── */
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 2.8rem 2rem;
+                text-align: center;
+            }
+            .flogo {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1rem;
+                font-weight: 600;
+                font-variant: small-caps;
+                letter-spacing: 0.04em;
+                color: var(--ink);
+                margin-bottom: 0.4rem;
+            }
+            footer p {
+                font-size: 0.7rem;
+                color: var(--muted);
+                font-weight: 300;
+                line-height: 1.7;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mobile-bar"><div id="mobile-fill"></div></div>
+
+        <div id="prog-track">
+            <div id="prog-rail"><div id="prog-fill"></div></div>
+            <div id="prog-pct">0%</div>
+        </div>
+
+        <nav>
+            <div class="nav-in">
+                <a href="#" class="nav-logo">◎ My Investing Philosophy</a>
+                <ul class="nav-links">
+                    <li><a href="#why">The Why</a></li>
+                    <li><a href="#seasons">Seasons</a></li>
+                    <li><a href="#strategy">80/20</a></li>
+                    <li><a href="#blueprint">Blueprint</a></li>
+                    <li><a href="#simulator">Simulate</a></li>
+                    <li><a href="#crisis">Crisis Test</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="wrap">
+            <!-- ── HERO ── -->
+            <header class="hero" id="top">
+                <div class="hero-kicker">
+                    Opinionated · Researched · Personal
+                </div>
+                <h1>
+                    <span class="hl">Dalio studied 500 years of history</span
+                    ><span class="hl">to build one portfolio.</span
+                    ><span class="hl"
+                        >I spent 20 hours <em>stealing his idea.</em></span
+                    >
+                </h1>
+                <p class="hero-sub">
+                    Ray Dalio spent decades studying how empires, currencies,
+                    and markets collapse. Then he published it. So I read it,
+                    stress-tested it for India, and built myself a portfolio I
+                    can actually sleep with. This is that portfolio.
+                </p>
+                <div class="sstrip">
+                    <div class="ssi">
+                        <div class="ssn" id="stat-ret">~11%</div>
+                        <div class="ssl">Hist. avg return</div>
+                    </div>
+                    <div class="ssi">
+                        <div class="ssn" id="stat-drop">~14%</div>
+                        <div class="ssl">Typical max drop</div>
+                    </div>
+                    <div class="ssi">
+                        <div class="ssn" id="stat-hrs">20hrs</div>
+                        <div class="ssl">Research behind this</div>
+                    </div>
+                </div>
+                <p class="hero-disclaimer">
+                    Not financial advice. One person's framework after 20+ hours
+                    of reading. Returns shown are historical approximations.
+                </p>
+                <div class="hero-scroll">
+                    <span>Read on</span><span class="ha">↓</span>
+                </div>
+            </header>
+
+            <hr class="div" />
+
+            <!-- ── THE WHY ── -->
+            <section id="why" style="scroll-margin-top: 5rem">
+                <div class="s-eye">The Honest Why</div>
+                <h2 class="s-ttl rv">
+                    It started with Ray Dalio<br />and a growing sense that<br /><em
+                        >something is changing.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    Dalio spent years studying how empires and reserve
+                    currencies rise and fall. His conclusion: the US dollar's
+                    dominance is not permanent. Debt cycles end. World orders
+                    shift. And when they do, the people who only held stocks in
+                    one currency, in one country, get hurt the most.
+                </p>
+                <p class="s-bod rv" style="margin-top: 1rem">
+                    That's not doom-saying. It's pattern recognition across 500
+                    years of economic history. What I wanted wasn't a way to
+                    predict what happens next — it was a portfolio that survives
+                    whichever version of the future shows up.
+                </p>
+
+                <div class="why-grid">
+                    <div class="wc rv d1" data-n="1">
+                        <div class="wc-ico">🌍</div>
+                        <div class="wc-t">
+                            Reserve currencies don't last forever
+                        </div>
+                        <div class="wc-x">
+                            The Dutch guilder dominated for 150 years. The
+                            British pound for another 100. The US dollar has
+                            been the world's reserve currency since 1944.
+                            Dalio's research shows every reserve currency
+                            eventually gives way — and the transition is rarely
+                            smooth for people who weren't prepared.
+                        </div>
+                    </div>
+                    <div class="wc rv d2" data-n="2">
+                        <div class="wc-ico">📈</div>
+                        <div class="wc-t">
+                            Compounding is violent — but only if you stay in
+                        </div>
+                        <div class="wc-x">
+                            ₹1 lakh at 11% yearly becomes roughly ₹22 lakhs in
+                            30 years — without adding anything more. The catch:
+                            one panic-sell during a crash resets the clock. Most
+                            people don't lose to the market. They lose to
+                            themselves.
+                        </div>
+                    </div>
+                    <div class="wc rv d3" data-n="3">
+                        <div class="wc-ico">🌊</div>
+                        <div class="wc-t">
+                            The economy has always had four moods
+                        </div>
+                        <div class="wc-x">
+                            Growth, recession, inflation, deflation. They cycle
+                            through endlessly — across every country, every era.
+                            What changes is the timing and severity. Nobody
+                            consistently predicts which comes next. So instead
+                            of guessing, you hold defences for all four at once.
+                        </div>
+                    </div>
+                    <div class="wc rv d4" data-n="4">
+                        <div class="wc-ico">⚖️</div>
+                        <div class="wc-t">
+                            Gold isn't paranoia — it's history
+                        </div>
+                        <div class="wc-x">
+                            Every time a currency has failed — Weimar Germany,
+                            1970s US dollar off gold, countless emerging market
+                            crises — gold held its value in real terms. This
+                            isn't a conspiracy. It's why central banks,
+                            including the RBI, have been quietly buying more of
+                            it since 2022.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── SEASONS ── -->
+            <section id="seasons" style="scroll-margin-top: 5rem">
+                <div class="s-eye">All-Weather Logic</div>
+                <h2 class="s-ttl rv">
+                    Whatever the economy does,<br /><em
+                        >something in your portfolio rises.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    This is the seesaw in action. Tap each economic condition
+                    and see which asset class steps up to cover it. The goal
+                    isn't to win in every season — it's to never get wiped out
+                    in any one of them.
+                </p>
+                <div class="sg">
+                    <button class="sbn rv d1" id="btn-growth">
+                        <span class="s-ico">🌱</span>
+                        <div>
+                            <div class="s-lbl">Economic Growth</div>
+                            <div class="s-dsc">
+                                Economy expands, companies profit.
+                            </div>
+                        </div>
+                    </button>
+                    <button class="sbn rv d2" id="btn-recession">
+                        <span class="s-ico">📉</span>
+                        <div>
+                            <div class="s-lbl">Recession</div>
+                            <div class="s-dsc">
+                                Economy contracts, markets fall.
+                            </div>
+                        </div>
+                    </button>
+                    <button class="sbn rv d3" id="btn-inflation">
+                        <span class="s-ico">🔥</span>
+                        <div>
+                            <div class="s-lbl">High Inflation</div>
+                            <div class="s-dsc">
+                                Prices surge, cash loses value.
+                            </div>
+                        </div>
+                    </button>
+                    <button class="sbn rv d4" id="btn-deflation">
+                        <span class="s-ico">❄️</span>
+                        <div>
+                            <div class="s-lbl">Deflation</div>
+                            <div class="s-dsc">
+                                Prices fall, debt becomes heavier.
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="sr rv" id="season-result">
+                    <div class="sr-ph">← tap a season to see the defence</div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── 80/20 ── -->
+            <section id="strategy" style="scroll-margin-top: 5rem">
+                <div class="s-eye">The Framework</div>
+                <h2 class="s-ttl rv">
+                    Two buckets.<br /><em>You cannot mix them.</em>
+                </h2>
+                <p class="s-bod rv">
+                    Most people lose money not because they picked bad stocks —
+                    but because they used money they couldn't afford to lose.
+                    This separation fixes that. Psychologically and practically.
+                </p>
+                <div class="spg">
+                    <div class="spc vault rv d1">
+                        <div class="sp-pct">80%</div>
+                        <div class="sp-nm">The Vault</div>
+                        <div class="sp-dx">
+                            The boring, automated core. Runs on math. You set it
+                            up once a year and don't touch it. Built to survive
+                            crashes, inflation, and recessions without you
+                            needing to make a single decision.
+                        </div>
+                        <ul class="sp-ul">
+                            <li>
+                                <span class="bd"></span>Passive — no timing, no
+                                picking
+                            </li>
+                            <li>
+                                <span class="bd"></span>This is your real net
+                                worth
+                            </li>
+                            <li>
+                                <span class="bd"></span>Zero emotional decisions
+                                — ever
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="spc play rv d2">
+                        <div class="sp-pct">20%</div>
+                        <div class="sp-nm">The Playground</div>
+                        <div class="sp-dx">
+                            Your high-risk money. Stocks you believe in, new
+                            tech bets, short-term trades — whatever interests
+                            you. The Vault doesn't care if this goes to zero.
+                            And that's the point.
+                        </div>
+                        <ul class="sp-ul">
+                            <li>
+                                <span class="bd"></span>High risk, and that is
+                                fine here
+                            </li>
+                            <li>
+                                <span class="bd"></span>Emotionally prepared for
+                                zero
+                            </li>
+                            <li>
+                                <span class="bd"></span>If it doubles, move
+                                profits to the Vault
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── BLUEPRINT ── -->
+            <section id="blueprint" style="scroll-margin-top: 5rem">
+                <div class="s-eye rv">The Vault Blueprint</div>
+                <h2 class="s-ttl rv">
+                    Seven ETFs on Zerodha.<br /><em
+                        >That is the entire recipe.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    No manager. No advisor fees. Buy these exactly like a
+                    regular stock. Each one covers a specific economic scenario.
+                    Together, they cover all four. Tap any segment to see the
+                    logic.
+                </p>
+                <div class="bpw rv">
+                    <div class="bph">
+                        <p>
+                            The 80% Vault is spread across seven ETFs — each
+                            doing one job. Two for growth, two for crashes, two
+                            for inflation, one for liquidity. Together they form
+                            a closed system that rebalances itself when you do
+                            the annual reset.
+                        </p>
+                    </div>
+                    <div class="bpb">
+                        <div class="bpg">
+                            <div class="cwrap">
+                                <canvas id="portfolioChart"></canvas>
+                            </div>
+                            <div class="dp" id="asset-details">
+                                <div class="dp-ph">
+                                    <div class="dp-ph-s">◉</div>
+                                    <p>
+                                        Tap or hover a slice<br />to see the
+                                        full breakdown.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── SIMULATOR ── -->
+            <section id="simulator" style="scroll-margin-top: 5rem">
+                <div class="s-eye rv">Growth Simulator</div>
+                <h2 class="s-ttl rv">
+                    Put your numbers in.<br /><em
+                        >See what time does to them.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    The returns below are based on historical averages — not
+                    promises. The Nifty column includes realistic yearly
+                    volatility because pretending it goes up in a straight line
+                    would be dishonest.
+                </p>
+                <div class="simsh rv">
+                    <div class="simctl">
+                        <div>
+                            <label>Starting Amount</label>
+                            <div class="simv" id="disp-lump"></div>
+                            <input
+                                type="range"
+                                id="sl-lump"
+                                min="50000"
+                                max="5000000"
+                                step="50000"
+                                value="500000"
+                            />
+                        </div>
+                        <div>
+                            <label>Monthly SIP</label>
+                            <div class="simv" id="disp-sip"></div>
+                            <input
+                                type="range"
+                                id="sl-sip"
+                                min="0"
+                                max="1000000"
+                                step="1000"
+                                value="10000"
+                            />
+                        </div>
+                        <div>
+                            <label>Time Horizon</label>
+                            <div class="simv" id="disp-yrs"></div>
+                            <input
+                                type="range"
+                                id="sl-yrs"
+                                min="1"
+                                max="30"
+                                step="1"
+                                value="15"
+                            />
+                        </div>
+                    </div>
+                    <div class="simst">
+                        <div class="ss aw">
+                            <div class="ss-lbl">🛡 All-Weather — ~11% p.a.</div>
+                            <div class="ss-val" id="val-aw"></div>
+                            <div class="ss-g" id="gain-aw"></div>
+                        </div>
+                        <div class="ss nif">
+                            <div class="ss-lbl">📈 Nifty Only — ~13% p.a.</div>
+                            <div class="ss-val" id="val-nif"></div>
+                            <div class="ss-g" id="gain-nif"></div>
+                        </div>
+                        <div class="ss fd">
+                            <div class="ss-lbl">
+                                🏦 Fixed Deposit — ~6.5% p.a.
+                            </div>
+                            <div class="ss-val" id="val-fd"></div>
+                            <div class="ss-g" id="gain-fd"></div>
+                        </div>
+                    </div>
+                    <div class="scw"><canvas id="simChart"></canvas></div>
+                    <div class="disc-box" style="margin-top: 1.2rem">
+                        <span class="di">ℹ️</span>
+                        <p>
+                            <strong>Honest disclaimer:</strong> These are
+                            projections using fixed historical averages. Real
+                            returns vary — sometimes a lot. The All-Weather
+                            strategy has historically had smoother drawdowns
+                            than pure equity, but it also grows more slowly than
+                            Nifty in strong bull markets. The tradeoff is
+                            <em>less pain when things go wrong</em>, not higher
+                            returns. Use these numbers to understand shape and
+                            magnitude, not as predictions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── CRISIS ── -->
+            <section id="crisis" style="scroll-margin-top: 5rem">
+                <div class="s-eye rv">Historical Stress Test</div>
+                <h2 class="s-ttl rv">
+                    Four real crashes.<br /><em
+                        >Approximate data. Real lessons.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    These figures are approximations based on published data and
+                    academic research on all-weather-style portfolios. The exact
+                    numbers depend on allocation, rebalancing timing, and taxes.
+                    The direction is accurate. The magnitudes are illustrative.
+                </p>
+                <div style="margin-top: 3rem" class="rv">
+                    <div class="ctabs" id="crisis-tabs">
+                        <button class="ct on" data-crisis="gfc">
+                            2008 Global Crisis
+                        </button>
+                        <button class="ct" data-crisis="covid">
+                            2020 Covid Crash
+                        </button>
+                        <button class="ct" data-crisis="taper">
+                            2013 Taper Tantrum
+                        </button>
+                        <button class="ct" data-crisis="hike">
+                            2022 Rate Hike Shock
+                        </button>
+                    </div>
+                    <div class="cly">
+                        <div class="ccard" id="crisis-info"></div>
+                        <div class="ccw">
+                            <canvas id="crisisChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── FAILSAFE ── -->
+            <section id="failsafe" style="scroll-margin-top: 5rem">
+                <div class="fss rv">
+                    <div class="fsdeco">⚠</div>
+                    <div class="s-eye">One More Thing</div>
+                    <h2 class="s-ttl">
+                        What if the exchange<br /><em>never opens?</em>
+                    </h2>
+                    <div class="fsq">
+                        <p>
+                            "The stock exchange has been closed until further
+                            notice. You cannot sell what you own — at any
+                            price."
+                        </p>
+                        <cite
+                            >— This happened in multiple countries during wars,
+                            coups, and financial crises. It is not
+                            theoretical.</cite
+                        >
+                    </div>
+                    <p class="fsb">
+                        The Zerodha Blueprint is efficient — but it assumes the
+                        exchange is open. If NSE/BSE freeze due to war,
+                        cyberattack, or a bank-run level panic, your
+                        <code>LIQUIDBEES</code> and <code>GOLDBEES</code> are
+                        trapped. Wealthy on paper. Zero access in reality.
+                    </p>
+                    <p class="fsb">
+                        This layer comes <strong>before</strong> the Vault.
+                        Build it first. It costs almost nothing.
+                    </p>
+                    <div class="fscards">
+                        <div class="fsc">
+                            <div class="fsc-i">💵</div>
+                            <div class="fsc-t">Physical Cash</div>
+                            <div class="fsc-x">
+                                1–2 months of living expenses in cash at home.
+                                If UPI, ATMs, or bank networks go offline, this
+                                is your immediate lifeline. No signal required.
+                            </div>
+                        </div>
+                        <div class="fsc">
+                            <div class="fsc-i">🏦</div>
+                            <div class="fsc-t">Bank Liquidity</div>
+                            <div class="fsc-x">
+                                6 months in liquid Fixed Deposits or savings.
+                                Banks run on a separate regulatory network from
+                                stock exchanges — they can stay open when
+                                markets are closed.
+                            </div>
+                        </div>
+                        <div class="fsc">
+                            <div class="fsc-i">🪙</div>
+                            <div class="fsc-t">Physical Gold</div>
+                            <div class="fsc-x">
+                                A small percentage in gold coins or bars — not
+                                jewellery — in a safe or locker. Zero
+                                counterparty risk. No broker or internet
+                                required. It has been money for 5,000 years.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="div" />
+
+            <!-- ── RULES ── -->
+            <section id="rules" style="scroll-margin-top: 5rem">
+                <div class="s-eye rv">The Only Rules That Matter</div>
+                <h2 class="s-ttl rv">
+                    Three rules.<br /><em
+                        >The strategy lives or dies by them.</em
+                    >
+                </h2>
+                <p class="s-bod rv">
+                    I've read enough post-mortems to know that most investors
+                    don't fail at picking. They fail at holding. These rules
+                    exist to protect the strategy from you — specifically from
+                    the version of you that reads the news at 2am during a
+                    crash.
+                </p>
+                <div class="rg">
+                    <div class="rc rv d1">
+                        <span class="rc-n">1</span>
+                        <div class="rc-tag">Rule 01</div>
+                        <div class="rc-t">Never Panic Sell</div>
+                        <div class="rc-x">
+                            When the news is screaming crash — your portfolio is
+                            already braced for it. Your bonds and gold are
+                            offsetting the stock losses. The portfolio is built
+                            for exactly this moment. Your only job is to not
+                            touch anything.
+                        </div>
+                    </div>
+                    <div class="rc rv d2">
+                        <span class="rc-n">2</span>
+                        <div class="rc-tag">Rule 02</div>
+                        <div class="rc-t">Use Limit Orders Only</div>
+                        <div class="rc-x">
+                            ETFs can have thin liquidity on bad days. A Market
+                            Order could mean paying 1–2% more than you should on
+                            every trade. Over a lifetime of investing, that gap
+                            compounds into a significant loss. Always set a
+                            price.
+                        </div>
+                    </div>
+                    <div class="rc rv d3">
+                        <span class="rc-n">3</span>
+                        <div class="rc-tag">Rule 03</div>
+                        <div class="rc-t">The Annual Reset</div>
+                        <div class="rc-x">
+                            Once a year, check your percentages. Sell what grew
+                            the most. Buy what shrank. This one ritual
+                            mechanically forces you to sell high and buy low —
+                            automatically, every year, without thinking about
+                            it.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- /wrap -->
+
+        <footer>
+            <div class="flogo">◎ My Investing Philosophy</div>
+            <p>
+                Built by one person. 20+ hours of reading Ray Dalio, studying
+                debt cycles, watching a changing world order. One opinionated
+                framework for surviving whatever comes next. Not financial
+                advice — this is just what made sense to me.
+            </p>
+            <p style="margin-top: 0.3rem; font-weight: 600">
+                Do your own research. Talk to a SEBI-registered advisor before
+                putting real money in anything.
+            </p>
+        </footer>
+
+        <script>
+            // ══ SPRING PROGRESS ══
+            const SECS = [
+                { id: "why", label: "The Why" },
+                { id: "seasons", label: "Seasons" },
+                { id: "strategy", label: "80/20" },
+                { id: "blueprint", label: "Blueprint" },
+                { id: "simulator", label: "Simulate" },
+                { id: "crisis", label: "Crashes" },
+                { id: "failsafe", label: "Failsafe" },
+                { id: "rules", label: "Rules" },
+            ];
+            const rail = document.getElementById("prog-rail");
+            const pfill = document.getElementById("prog-fill");
+            const pPct = document.getElementById("prog-pct");
+            const mFill = document.getElementById("mobile-fill");
+
+            SECS.forEach((s, i) => {
+                const pct = ((i + 1) / (SECS.length + 1)) * 100;
+                const dot = document.createElement("div");
+                dot.className = "pdot";
+                dot.style.top = pct + "%";
+                dot.dataset.id = s.id;
+                dot.innerHTML = '<span class="pdot-tip">' + s.label + "</span>";
+                dot.addEventListener("click", () => {
+                    var el = document.getElementById(s.id);
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                });
+                rail.appendChild(dot);
+            });
+
+            var springTarget = 0,
+                springCur = 0,
+                springVel = 0;
+            var activeSecId = null;
+
+            function springTick() {
+                var force = 0.088 * (springTarget - springCur);
+                springVel = springVel * 0.74 + force;
+                springCur += springVel;
+                var c = Math.max(0, Math.min(100, springCur));
+                pfill.style.height = c + "%";
+                mFill.style.width = c + "%";
+                pPct.textContent = Math.round(c) + "%";
+                document.querySelectorAll(".pdot").forEach(function (dot) {
+                    var el = document.getElementById(dot.dataset.id);
+                    if (!el) return;
+                    var ep =
+                        ((el.getBoundingClientRect().top + window.scrollY) /
+                            document.body.scrollHeight) *
+                        100;
+                    dot.classList.toggle("lit", c >= ep * 0.93);
+                });
+                requestAnimationFrame(springTick);
+            }
+            springTick();
+
+            function onScroll() {
+                var total = document.body.scrollHeight - window.innerHeight;
+                springTarget = total > 0 ? (window.scrollY / total) * 100 : 0;
+                var cur = null;
+                SECS.forEach(function (s) {
+                    var el = document.getElementById(s.id);
+                    if (el && el.getBoundingClientRect().top <= 130) cur = s.id;
+                });
+                if (cur !== activeSecId) {
+                    activeSecId = cur;
+                    document.querySelectorAll(".pdot").forEach(function (d) {
+                        d.classList.toggle("here", d.dataset.id === cur);
+                    });
+                }
+            }
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            // ══ SCROLL REVEAL ══
+            var rvObs = new IntersectionObserver(
+                function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) e.target.classList.add("in");
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            document.querySelectorAll(".rv").forEach(function (el) {
+                rvObs.observe(el);
+            });
+
+            // ══ NUMBER FLOW ANIMATION ══
+            function animateCount(el, from, to, duration, fmt) {
+                var start = null;
+                function step(ts) {
+                    if (!start) start = ts;
+                    var progress = Math.min((ts - start) / duration, 1);
+                    var ease = 1 - Math.pow(1 - progress, 3);
+                    var val = from + (to - from) * ease;
+                    el.textContent = fmt(val);
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+
+            // ══ FORMAT INR ══
+            function fmtINR(n) {
+                if (n >= 1e7) return "\u20b9" + (n / 1e7).toFixed(2) + " Cr";
+                if (n >= 1e5) return "\u20b9" + (n / 1e5).toFixed(2) + " L";
+                return "\u20b9" + Math.round(n).toLocaleString("en-IN");
+            }
+
+            // Animate stat strip on load
+            setTimeout(function () {
+                var retEl = document.getElementById("stat-ret");
+                var dropEl = document.getElementById("stat-drop");
+                var hrsEl = document.getElementById("stat-hrs");
+                retEl.textContent = "~11%";
+                dropEl.textContent = "~14%";
+                hrsEl.textContent = "20hrs";
+            }, 800);
+
+            // ══ SEASONS ══
+            var SD = {
+                "btn-growth": {
+                    icon: "📈",
+                    title: "The Engine: Stocks",
+                    cls: "ag",
+                    color: "var(--sage)",
+                    text: "When the economy grows, companies earn more and stock prices rise. Your NIFTYBEES (India's top 50) and MON100 (Apple, Microsoft, Nvidia) carry the portfolio during good times.",
+                },
+                "btn-recession": {
+                    icon: "🛡️",
+                    title: "The Parachute: Government Bonds",
+                    cls: "ar",
+                    color: "var(--sky)",
+                    text: "When stocks crash, central banks cut interest rates. This pushes up bond prices — your GSEC10IETF rises sharply, directly offsetting the fall in your equity holdings.",
+                },
+                "btn-inflation": {
+                    icon: "🥇",
+                    title: "The Armour: Gold & Silver",
+                    cls: "ai",
+                    color: "var(--gold)",
+                    text: "When paper money loses purchasing power, real assets hold value. GOLDBEES and SILVERBEES preserve your real wealth while everything denominated in rupees quietly shrinks.",
+                },
+                "btn-deflation": {
+                    icon: "💵",
+                    title: "The Anchor: Cash & Short Bonds",
+                    cls: "ad",
+                    color: "var(--lav)",
+                    text: "When prices fall broadly, cash is king. LIQUIDBEES is pegged at \u20b91000 and never falls. EBBETF0430 provides locked-in yield. Both act as dry powder to buy assets cheap when others are panic-selling.",
+                },
+            };
+            var sBtns = document.querySelectorAll(".sbn");
+            var sResult = document.getElementById("season-result");
+            sBtns.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    sBtns.forEach(function (b) {
+                        b.className = "sbn rv in";
+                    });
+                    var d = SD[btn.id];
+                    btn.classList.add(d.cls);
+                    sResult.style.borderColor = d.color;
+                    sResult.innerHTML =
+                        '<div class="src"><div class="src-ico">' +
+                        d.icon +
+                        '</div><div><div class="src-t">' +
+                        d.title +
+                        '</div><div class="src-x">' +
+                        d.text +
+                        "</div></div></div>";
+                });
+            });
+
+            // ══ PORTFOLIO CHART ══
+            var PD = [
+                {
+                    label: "Large Cap India",
+                    ticker: "NIFTYBEES",
+                    pct: 20,
+                    color: "#8ec9b0",
+                    desc: "The core growth engine. Holds India's top 50 companies. When the Indian economy grows, this is what drives your returns.",
+                },
+                {
+                    label: "US Tech Exposure",
+                    ticker: "MON100",
+                    pct: 10,
+                    color: "#a8d4c2",
+                    desc: "Global insurance. Holds Apple, Microsoft, Nvidia. If Indian markets stagnate while the world grows, this keeps you exposed to global upside.",
+                },
+                {
+                    label: "Aggressive Bonds",
+                    ticker: "GSEC10IETF",
+                    pct: 25,
+                    color: "#8db8d8",
+                    desc: "The crash shield. Long-duration government bonds. When recession hits and RBI cuts rates, bond prices rise — directly offsetting your stock losses.",
+                },
+                {
+                    label: "Steady Bonds",
+                    ticker: "EBBETF0430",
+                    pct: 15,
+                    color: "#a8cce8",
+                    desc: "The quiet anchor. Medium-duration bonds maturing around 2030. No drama — just steady, government-backed compounding that does not surprise you.",
+                },
+                {
+                    label: "Gold",
+                    ticker: "GOLDBEES",
+                    pct: 10,
+                    color: "#e8c878",
+                    desc: "The inflation fighter. When paper money loses value, gold holds purchasing power. It has never gone to zero in 5,000 years of recorded use as money.",
+                },
+                {
+                    label: "Silver",
+                    ticker: "SILVERBEES",
+                    pct: 5,
+                    color: "#f0dca0",
+                    desc: "Precious metal plus industrial demand. Silver is used in solar panels, EVs, and chips. Benefits from both inflation protection and clean-energy growth.",
+                },
+                {
+                    label: "Liquid Cash",
+                    ticker: "LIQUIDBEES",
+                    pct: 15,
+                    color: "#d4cfc8",
+                    desc: "Dry powder. Pegged at \u20b91000 — it never falls. When stocks crash 30-40%, you sell this and buy equities cheap. This is what makes the annual rebalancing powerful.",
+                },
+            ];
+
+            var bpCtx = document
+                .getElementById("portfolioChart")
+                .getContext("2d");
+            var bpChart = new Chart(bpCtx, {
+                type: "doughnut",
+                data: {
+                    labels: PD.map(function (d) {
+                        return d.ticker;
+                    }),
+                    datasets: [
+                        {
+                            data: PD.map(function (d) {
+                                return d.pct;
+                            }),
+                            backgroundColor: PD.map(function (d) {
+                                return d.color;
+                            }),
+                            borderWidth: 3,
+                            borderColor: "#fdfcfa",
+                            hoverOffset: 10,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: "64%",
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: {
+                                padding: 13,
+                                font: {
+                                    family: "DM Sans, sans-serif",
+                                    size: 11,
+                                },
+                                color: "#6e6860",
+                                boxWidth: 9,
+                                boxHeight: 9,
+                            },
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (c) {
+                                    return (
+                                        " " + c.label + ": " + c.parsed + "%"
+                                    );
+                                },
+                            },
+                            backgroundColor: "#18160f",
+                            padding: 10,
+                            cornerRadius: 8,
+                            titleFont: { family: "DM Sans", size: 12 },
+                            bodyFont: { family: "DM Sans", size: 12 },
+                        },
+                    },
+                    onHover: function (e, els) {
+                        if (els && els.length) updPanel(els[0].index);
+                    },
+                    onClick: function (e, els) {
+                        if (els && els.length) updPanel(els[0].index);
+                    },
+                },
+            });
+
+            var dpEl = document.getElementById("asset-details");
+            function updPanel(i) {
+                var d = PD[i];
+                dpEl.style.borderColor = d.color;
+                dpEl.style.borderLeftWidth = "5px";
+                dpEl.innerHTML =
+                    '<div class="dp-lbl">' +
+                    d.label +
+                    "</div>" +
+                    '<div class="dp-tkr">' +
+                    d.ticker +
+                    "</div>" +
+                    '<div class="dp-pr">' +
+                    '<div class="dp-pv" style="color:' +
+                    d.color +
+                    ';filter:saturate(2.5) brightness(0.62)">' +
+                    d.pct +
+                    "%</div>" +
+                    '<div class="dp-of">of the Vault</div>' +
+                    "</div>" +
+                    '<div class="dp-wl">Why we hold it</div>' +
+                    '<div class="dp-wd">' +
+                    d.desc +
+                    "</div>";
+            }
+
+            // ══ SIMULATOR ══
+            function calcFV(lump, sip, years, rate) {
+                var r = rate / 12,
+                    n = years * 12;
+                return (
+                    lump * Math.pow(1 + r, n) +
+                    sip * ((Math.pow(1 + r, n) - 1) / r) * (1 + r)
+                );
+            }
+
+            function buildSeries(lump, sip, years) {
+                var nm = [
+                    1, 1.18, 1.08, 0.62, 1.22, 1.15, 0.75, 1.3, 1.1, 0.55, 1.25,
+                    1.12, 0.8, 1.2, 1.15, 0.7, 1.35, 1.05, 0.65, 1.2, 1.1, 0.9,
+                    1.25, 1.15, 0.6, 1.3, 1.1, 0.8, 1.2, 1.05,
+                ];
+                var labels = [],
+                    aw = [],
+                    nif = [],
+                    fd = [];
+                var awV = lump,
+                    nifV = lump,
+                    fdV = lump;
+                for (var y = 1; y <= years; y++) {
+                    for (var m = 0; m < 12; m++) {
+                        awV = awV * (1 + 0.11 / 12) + sip;
+                        nifV = nifV * (1 + 0.13 / 12) + sip;
+                        fdV = fdV * (1 + 0.065 / 12) + sip;
+                    }
+                    nifV *= nm[(y - 1) % nm.length];
+                    labels.push("Yr " + y);
+                    aw.push(Math.round(awV));
+                    nif.push(Math.round(nifV));
+                    fd.push(Math.round(fdV));
+                }
+                return { labels: labels, aw: aw, nif: nif, fd: fd };
+            }
+
+            var simCtx = document.getElementById("simChart").getContext("2d");
+            var simChart = new Chart(simCtx, {
+                type: "line",
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: "\ud83d\udee1 All-Weather",
+                            data: [],
+                            borderColor: "#4e8c72",
+                            backgroundColor: "rgba(78,140,114,0.1)",
+                            borderWidth: 2.5,
+                            pointRadius: 2,
+                            tension: 0.4,
+                            fill: true,
+                        },
+                        {
+                            label: "\ud83d\udcc8 Nifty Only",
+                            data: [],
+                            borderColor: "#4a82b4",
+                            backgroundColor: "rgba(74,130,180,0.06)",
+                            borderWidth: 2,
+                            pointRadius: 2,
+                            tension: 0.4,
+                            fill: false,
+                            borderDash: [5, 3],
+                        },
+                        {
+                            label: "\ud83c\udfe6 Fixed Deposit",
+                            data: [],
+                            borderColor: "#b8900a",
+                            backgroundColor: "rgba(184,144,10,0.06)",
+                            borderWidth: 1.8,
+                            pointRadius: 2,
+                            tension: 0.4,
+                            fill: false,
+                            borderDash: [2, 4],
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: "index", intersect: false },
+                    plugins: {
+                        legend: {
+                            position: "top",
+                            labels: {
+                                font: {
+                                    family: "DM Sans, sans-serif",
+                                    size: 11,
+                                },
+                                color: "#6e6860",
+                                boxWidth: 11,
+                                padding: 14,
+                            },
+                        },
+                        tooltip: {
+                            backgroundColor: "#18160f",
+                            padding: 11,
+                            cornerRadius: 9,
+                            titleFont: { family: "DM Sans", size: 12 },
+                            bodyFont: { family: "DM Sans", size: 12 },
+                            callbacks: {
+                                label: function (c) {
+                                    return (
+                                        " " +
+                                        c.dataset.label +
+                                        ": " +
+                                        fmtINR(c.parsed.y)
+                                    );
+                                },
+                            },
+                        },
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: "#f0ece6" },
+                            ticks: {
+                                font: { family: "DM Sans", size: 11 },
+                                color: "#a09890",
+                            },
+                        },
+                        y: {
+                            grid: { color: "#f0ece6" },
+                            ticks: {
+                                font: { family: "DM Sans", size: 11 },
+                                color: "#a09890",
+                                callback: function (v) {
+                                    return fmtINR(v);
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+
+            var prevAW = 0,
+                prevNIF = 0,
+                prevFD = 0;
+
+            function updateSim() {
+                var lump = +document.getElementById("sl-lump").value;
+                var sip = +document.getElementById("sl-sip").value;
+                var yrs = +document.getElementById("sl-yrs").value;
+
+                document.getElementById("disp-lump").textContent = fmtINR(lump);
+                document.getElementById("disp-sip").textContent = fmtINR(sip);
+                document.getElementById("disp-yrs").textContent =
+                    yrs + (yrs === 1 ? " year" : " years");
+
+                var inv = lump + sip * 12 * yrs;
+                var awF = calcFV(lump, sip, yrs, 0.11);
+                var nifF = calcFV(lump, sip, yrs, 0.13);
+                var fdF = calcFV(lump, sip, yrs, 0.065);
+
+                // Number flow animation
+                var awEl = document.getElementById("val-aw");
+                var nifEl = document.getElementById("val-nif");
+                var fdEl = document.getElementById("val-fd");
+
+                animateCount(awEl, prevAW, awF, 500, fmtINR);
+                animateCount(nifEl, prevNIF, nifF, 500, fmtINR);
+                animateCount(fdEl, prevFD, fdF, 500, fmtINR);
+                prevAW = awF;
+                prevNIF = nifF;
+                prevFD = fdF;
+
+                document.getElementById("gain-aw").textContent =
+                    "Gain: " +
+                    fmtINR(awF - inv) +
+                    "  \u00b7  Invested: " +
+                    fmtINR(inv);
+                document.getElementById("gain-nif").textContent =
+                    "Gain: " +
+                    fmtINR(nifF - inv) +
+                    "  \u00b7  Invested: " +
+                    fmtINR(inv);
+                document.getElementById("gain-fd").textContent =
+                    "Gain: " +
+                    fmtINR(fdF - inv) +
+                    "  \u00b7  Invested: " +
+                    fmtINR(inv);
+
+                var s = buildSeries(lump, sip, yrs);
+                simChart.data.labels = s.labels;
+                simChart.data.datasets[0].data = s.aw;
+                simChart.data.datasets[1].data = s.nif;
+                simChart.data.datasets[2].data = s.fd;
+                simChart.update("active");
+            }
+
+            ["sl-lump", "sl-sip", "sl-yrs"].forEach(function (id) {
+                document
+                    .getElementById(id)
+                    .addEventListener("input", updateSim);
+            });
+            updateSim();
+
+            // ══ CRISIS ══
+            var CRISES = {
+                gfc: {
+                    year: "2008 \u2013 2009",
+                    name: "Global Financial Crisis",
+                    desc: "Lehman Brothers collapsed. Global credit froze. The Nifty lost roughly 55-60% peak to trough. Investors who stayed in a diversified portfolio recovered far faster than those in pure equities — or those who sold.",
+                    awDrop: 14,
+                    nifDrop: 58,
+                    awRec: 8,
+                    nifRec: 28,
+                    labels: [
+                        "Jan 08",
+                        "Apr",
+                        "Jul",
+                        "Oct",
+                        "Jan 09",
+                        "Apr",
+                        "Jul",
+                        "Oct",
+                        "Jan 10",
+                        "Apr",
+                    ],
+                    aw: [100, 96, 99, 94, 88, 91, 95, 99, 103, 107],
+                    nif: [100, 88, 78, 52, 45, 55, 68, 72, 82, 92],
+                },
+                covid: {
+                    year: "2020",
+                    name: "Covid-19 Crash",
+                    desc: "The fastest recorded market crash. The Nifty fell ~38% in 40 days. Bonds and gold surged as investors fled to safety. A diversified portfolio saw a fraction of that drop, and recovered in months instead of years.",
+                    awDrop: 10,
+                    nifDrop: 38,
+                    awRec: 3,
+                    nifRec: 9,
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                    ],
+                    aw: [100, 98, 90, 92, 95, 97, 101, 104, 106, 108],
+                    nif: [100, 93, 62, 68, 75, 82, 90, 96, 98, 101],
+                },
+                taper: {
+                    year: "2013",
+                    name: "Taper Tantrum",
+                    desc: "The US Fed hinted at slowing bond purchases. Emerging markets panicked. India saw capital outflows and the Nifty dropped ~20%. Domestic bonds barely moved — providing a real cushion to a diversified holder.",
+                    awDrop: 4,
+                    nifDrop: 20,
+                    awRec: 4,
+                    nifRec: 14,
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                    ],
+                    aw: [
+                        100, 101, 102, 103, 102, 100, 99, 98, 99, 100, 101, 102,
+                    ],
+                    nif: [100, 103, 104, 105, 98, 92, 88, 84, 87, 90, 94, 97],
+                },
+                hike: {
+                    year: "2022",
+                    name: "Global Rate Hike Shock",
+                    desc: "The US Fed hiked rates at the fastest pace in 40 years. Global tech stocks fell 30-50%. Short-duration bonds and gold — both held in an all-weather allocation — provided a meaningful buffer against the carnage.",
+                    awDrop: 6,
+                    nifDrop: 16,
+                    awRec: 5,
+                    nifRec: 10,
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                    ],
+                    aw: [100, 98, 99, 97, 95, 94, 95, 97, 96, 97, 99, 100],
+                    nif: [100, 97, 98, 96, 91, 88, 90, 92, 89, 91, 94, 97],
+                },
+            };
+
+            var cChart = null;
+            function renderCrisis(key) {
+                var c = CRISES[key];
+                document.getElementById("crisis-info").innerHTML =
+                    '<div class="cy">' +
+                    c.year +
+                    "</div>" +
+                    '<div class="cn">' +
+                    c.name +
+                    "</div>" +
+                    '<div class="cdesc">' +
+                    c.desc +
+                    "</div>" +
+                    '<div class="cbrow">' +
+                    '<div class="cbll"><span style="color:var(--sage);font-weight:500">🛡 All-Weather fell</span><span style="color:var(--sage);font-weight:600">\u2212' +
+                    c.awDrop +
+                    "%</span></div>" +
+                    '<div class="cbt"><div class="cbf fsage" id="bar-aw" style="width:0%"></div></div>' +
+                    "</div>" +
+                    '<div class="cbrow">' +
+                    '<div class="cbll"><span style="color:var(--blush);font-weight:500">📉 Nifty-Only fell</span><span style="color:var(--blush);font-weight:600">\u2212' +
+                    c.nifDrop +
+                    "%</span></div>" +
+                    '<div class="cbt"><div class="cbf fblush" id="bar-nif" style="width:0%"></div></div>' +
+                    "</div>" +
+                    '<div class="crec">' +
+                    '<div class="rcc rs"><div class="rcc-l">🛡 Recovery time</div><div class="rcc-v">' +
+                    c.awRec +
+                    " months</div></div>" +
+                    '<div class="rcc rb"><div class="rcc-l">📉 Recovery time</div><div class="rcc-v">' +
+                    c.nifRec +
+                    " months</div></div>" +
+                    "</div>";
+
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        var ba = document.getElementById("bar-aw");
+                        var bn = document.getElementById("bar-nif");
+                        if (ba) ba.style.width = (c.awDrop / 70) * 100 + "%";
+                        if (bn) bn.style.width = (c.nifDrop / 70) * 100 + "%";
+                    });
+                });
+
+                if (cChart) cChart.destroy();
+                cChart = new Chart(
+                    document.getElementById("crisisChart").getContext("2d"),
+                    {
+                        type: "line",
+                        data: {
+                            labels: c.labels,
+                            datasets: [
+                                {
+                                    label: "\ud83d\udee1 All-Weather",
+                                    data: c.aw,
+                                    borderColor: "#4e8c72",
+                                    backgroundColor: "rgba(78,140,114,0.12)",
+                                    borderWidth: 2.5,
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "#4e8c72",
+                                    tension: 0.4,
+                                    fill: true,
+                                },
+                                {
+                                    label: "\ud83d\udcc9 Nifty Only",
+                                    data: c.nif,
+                                    borderColor: "#c07458",
+                                    backgroundColor: "rgba(192,116,88,0.08)",
+                                    borderWidth: 2,
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "#c07458",
+                                    tension: 0.4,
+                                    fill: false,
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: { mode: "index", intersect: false },
+                            plugins: {
+                                legend: {
+                                    position: "top",
+                                    labels: {
+                                        font: {
+                                            family: "DM Sans, sans-serif",
+                                            size: 12,
+                                        },
+                                        color: "#6e6860",
+                                        boxWidth: 11,
+                                        padding: 13,
+                                    },
+                                },
+                                tooltip: {
+                                    backgroundColor: "#18160f",
+                                    padding: 10,
+                                    cornerRadius: 8,
+                                    titleFont: { family: "DM Sans", size: 12 },
+                                    bodyFont: { family: "DM Sans", size: 12 },
+                                    callbacks: {
+                                        label: function (ctx) {
+                                            return (
+                                                " " +
+                                                ctx.dataset.label +
+                                                ": " +
+                                                ctx.parsed.y.toFixed(1) +
+                                                " (start=100)"
+                                            );
+                                        },
+                                    },
+                                },
+                            },
+                            scales: {
+                                x: {
+                                    grid: { color: "#f0ece6" },
+                                    ticks: {
+                                        font: { family: "DM Sans", size: 10 },
+                                        color: "#a09890",
+                                    },
+                                },
+                                y: {
+                                    min: 38,
+                                    max: 115,
+                                    grid: { color: "#f0ece6" },
+                                    ticks: {
+                                        font: { family: "DM Sans", size: 11 },
+                                        color: "#a09890",
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: "Value (indexed to 100)",
+                                        font: { family: "DM Sans", size: 11 },
+                                        color: "#a09890",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                );
+            }
+
+            document
+                .getElementById("crisis-tabs")
+                .addEventListener("click", function (e) {
+                    var btn = e.target.closest(".ct");
+                    if (!btn) return;
+                    document.querySelectorAll(".ct").forEach(function (b) {
+                        b.classList.remove("on");
+                    });
+                    btn.classList.add("on");
+                    renderCrisis(btn.dataset.crisis);
+                });
+
+            renderCrisis("gfc");
+        </script>
+    </body>
+</html>
